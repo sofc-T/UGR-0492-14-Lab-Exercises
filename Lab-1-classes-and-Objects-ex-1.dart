@@ -13,13 +13,13 @@ class Person {
 }
 
 void main() {  
-  Person person1 = Person("John", 30, "123 Main St");
+  Person person1 = Person("John", 30, "4 Kilo");
   
   print("Initial Object:");
   person1.printObject();
   
   person1.age = 35;
-  person1.address = "456 Elm St";
+  person1.address = "5 Kilo";
 
   print("Modified Object:");
   person1.printObject();
