@@ -12,7 +12,6 @@ void main() {
   print("The sum of $num1 and $num2 is: $sum");
 }
 
-// Function to add two numbers
 double addNumbers(double num1, double num2) {
   return num1 + num2;
 }
