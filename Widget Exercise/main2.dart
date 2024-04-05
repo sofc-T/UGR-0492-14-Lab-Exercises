@@ -1,8 +1,8 @@
 
-
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -11,96 +11,106 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-          appBar: AppBar( 
-            backgroundColor: Colors.blue,
-            title: const Row(
-              children: [
-                Icon(Icons.question_mark_rounded,color: Colors.white,),
-                Text("iJTracker"),
-                Row(children: [
-                  Icon(Icons.notifications_active_rounded,color: Colors.white,),
-                  Icon(Icons.settings,color: Colors.white,),
-                ],mainAxisAlignment:MainAxisAlignment.end,)
-              ], mainAxisAlignment:MainAxisAlignment.spaceEvenly
-              )
+          appBar: AppBar(
+  title: Row(
+    children: [
+      Icon(Icons.arrow_back_ios_new_rounded,),
+      Expanded(
+        child:Container(
+        height: 48,
+        color:const Color.fromARGB(255, 211, 201, 201),
+        child: Container(
+          padding: EdgeInsets.all(4.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Search...',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              ),
+            ),
           ),
-          body: Column(
-            children: [ Row(
-            children: [
-
-              Image.asset('panda.jpeg',width: 64,height:64,),
-              Row(children: [
-
-                Column(children: [
-                  Text('Robert Steven'),
-                  Row(children: [
-                    Icon(Icons.car_crash_rounded,color: Colors.blue,),
-                    Text('B 2455 UJD| 701u8847983'),
-                  ],mainAxisAlignment:MainAxisAlignment.center)
-                ],),
-              Text('Log Out'),], mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              )
-              // 
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          ), 
-
-          Container(
-            color: Colors.blue, // <-- Red color provided to below Row
-          child: Text('Online| Battery:90%'), 
-             ),
+        ),)
+      ),
+      
+      Padding(padding:EdgeInsets.all(4),child:Icon(Icons.
+      card_travel, ),),
+      Padding(padding:EdgeInsets.all(4),child:Icon(Icons.notifications_active_rounded,),)
+      
+    ],
+  ),
+)
+,
+          body: Column(children: [
+            Image.asset('panda.jpeg',width: double.infinity,height: 400,fit: BoxFit.cover,),
+          Row(children: [
+            Padding( padding: EdgeInsets.all(16),child:Text('\$8.6', style: TextStyle(fontSize:24, fontWeight: FontWeight.bold),)),
+            Padding( padding: EdgeInsets.all(16),child:Icon(Icons.heart_broken_rounded)),
+            
+          ],mainAxisAlignment:  MainAxisAlignment.spaceBetween,),
           Column(
-            children: [
-              Row(
-                children: [
-                  Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                ], mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              ),
-              Row(
-                children: [
-                  Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                ], mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              ),Row(
-                children: [
-                  Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                ], mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              ),Row(
-                children: [
-                  Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                Container(decoration: BoxDecoration( border: Border. all( width: 5, color: Colors.grey)), child:Column(children:[
-                Icon(Icons.map,color: Colors.blue,), Text("Map")]), padding:EdgeInsets.all(54), ),
-                ], mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              ),
-              
-            ],
-          ),
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Padding(
+      padding: EdgeInsets.only(left:16),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text('Bard smart ligh bulb Lamp Bohlam LED Wifi',style: TextStyle(fontWeight:FontWeight.bold, fontSize: 16),textAlign: TextAlign.left),
+      ),
+    ),
+    Padding(
+      padding: EdgeInsets.only(left:16),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text('RGBWWWWW    12W Home IoT',style: TextStyle(fontWeight:FontWeight.bold, fontSize: 16), textAlign: TextAlign.start),
+      ),
+    ),
+    
+  ],
+),
+          Row(children: [
+            Padding(padding:EdgeInsets.all(8),child:Row(children: [
+              Icon(Icons.star),
+              Text('5.0(354)'),
+            ],)),
+            Padding(padding:EdgeInsets.all(8),child:Text('540 Sale')),
+            Padding(padding:EdgeInsets.all(8),child:Row(children: [
+              Icon(Icons.map_sharp),
+              Text('Brooklyn'),
+            ],)),
+            
+          ],),
+          Padding(padding:EdgeInsets.only(bottom:16),child:Container(
+            color: Color.fromARGB(255, 240, 239, 239),
+            width: MediaQuery.of(context).size.width,
+            height: 20,
+            
+          )),
+          Text('Variant',),
+          Text('Size'),
+          // Size
+          // Color
+
+          Row(children: [
+            Icon(Icons.book),
+            // Button Bar
+            ButtonBar()
+          ],)
+          
+
           ],
-          )
+          ),
         )
     );
     
   }
 }
+
+
+
