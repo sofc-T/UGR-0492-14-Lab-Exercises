@@ -1,8 +1,7 @@
+// main.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'posts.dart';
-import 'bloc_post.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'post.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,10 +10,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BlocProvider(
-        create: (_) => PostsBloc()..fetchPosts(),
-        child: Scaffold(
+    return ProviderScope(
+      child: MaterialApp(
+        home: Scaffold(
           appBar: AppBar(
             title: Text(
               'Posts From jsonplaceholder',
@@ -23,15 +21,12 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            backgroundColor: Color.fromARGB(255, 253, 251, 255),
+            backgroundColor: Color.fromARGB(255, 254, 252, 255),
           ),
-          body: BlocBuilder<PostsBloc, List<Posts>>(
-            builder: (context, posts) {
-              if (posts.isEmpty) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
+          body: Consumer(builder: (context, ref, _) {
+            final postsAsyncValue = ref.watch(postsProvider);
+            return postsAsyncValue.when(
+              data: (posts) {
                 return ListView.builder(
                   itemCount: posts.length,
                   itemBuilder: (context, index) {
@@ -39,15 +34,13 @@ class MyApp extends StatelessWidget {
                     return Column(
                       children: [
                         Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                          color: Color.fromARGB(255, 235, 233, 238),
+                          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                          color: Color.fromARGB(255, 255, 255, 255),
                           height: 20,
                           width: double.infinity,
                           child: Text(
                             'Title: ${post.title}',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 245, 244, 247)),
+                            style: TextStyle(color: Color.fromARGB(255, 245, 244, 247)),
                           ),
                         ),
                         SizedBox(
@@ -65,9 +58,11 @@ class MyApp extends StatelessWidget {
                     );
                   },
                 );
-              }
-            },
-          ),
+              },
+              loading: () => Center(child: CircularProgressIndicator()),
+              error: (error, stackTrace) => Center(child: Text('Error: $error')),
+            );
+          }),
         ),
       ),
     );
