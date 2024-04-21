@@ -1,75 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'posts.dart';
-import 'bloc_post.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CounterModel(),
+      child: MyApp(),
+    ),
+  );
+}
+
+class CounterModel extends ChangeNotifier {
+  int counter = 0;
+
+  int getCounter() => counter;
+
+  void incrementCounter() {
+    counter++;
+    notifyListeners();
+  }
+
+  void decrementCounter() {
+    counter--;
+    notifyListeners();
+  }
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        create: (_) => PostsBloc()..fetchPosts(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Posts From jsonplaceholder',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            backgroundColor: Color.fromARGB(255, 253, 251, 255),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text("Counter"),
+        ),
+        body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Count(),
+              Text(""), // Placeholder text
+            ],
           ),
-          body: BlocBuilder<PostsBloc, List<Posts>>(
-            builder: (context, posts) {
-              if (posts.isEmpty) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return ListView.builder(
-                  itemCount: posts.length,
-                  itemBuilder: (context, index) {
-                    final post = posts[index];
-                    return Column(
-                      children: [
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                          color: Color.fromARGB(255, 235, 233, 238),
-                          height: 20,
-                          width: double.infinity,
-                          child: Text(
-                            'Title: ${post.title}',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 245, 244, 247)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 100,
-                          child: Image.network(post.image),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(30),
-                          child: ListTile(
-                            subtitle: Text(post.content),
-                            tileColor: Color.fromARGB(255, 240, 239, 241),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
-            },
+        ),
+        floatingActionButton: SizedBox(
+          width: double.infinity, // Adjust the width as needed
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Consumer<CounterModel>(
+                builder: (context, counter, child) => FloatingActionButton(
+                  onPressed: counter.incrementCounter,
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                ),
+              ),
+              SizedBox(width: 16),
+              Consumer<CounterModel>(
+                builder: (context, counter, child) => FloatingActionButton(
+                  onPressed: counter.decrementCounter,
+                  tooltip: 'Decrement',
+                  child: Icon(Icons.remove),
+                ),
+              ),
+            ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class Count extends StatelessWidget {
+  const Count({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      /// Calls `context.watch` to make [Count] rebuild when [Counter] changes.
+      '${context.watch<CounterModel>().counter}',
+      key: const Key('counterState'),
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 }
