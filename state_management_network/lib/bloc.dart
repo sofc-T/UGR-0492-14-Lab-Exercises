@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
+    BlocProvider<CounterModel>(
       create: (context) => CounterModel(),
       child: MyApp(),
     ),
   );
 }
 
-class CounterModel extends ChangeNotifier {
+
+class CounterModel extends Cubit<int> {
   int counter = 0;
+
+  CounterModel() : super(0);
 
   int getCounter() => counter;
 
   void incrementCounter() {
-    counter++;
-    notifyListeners();
+    emit(state + 1);
+   
   }
 
   void decrementCounter() {
-    counter--;
-    notifyListeners();
+    emit(state - 1);
+   
   }
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -37,35 +43,33 @@ class MyApp extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text("Counter"),
         ),
-        body: const Center(
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Count(),
-              Text(""), // Placeholder text
+              Text(""),
             ],
           ),
         ),
         floatingActionButton: SizedBox(
-          width: double.infinity, // Adjust the width as needed
+          width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Consumer<CounterModel>(
-                builder: (context, counter, child) => FloatingActionButton(
-                  onPressed: counter.incrementCounter,
+               FloatingActionButton(
+                  onPressed: context.read<CounterModel>().incrementCounter,
                   tooltip: 'Increment',
                   child: Icon(Icons.add),
                 ),
-              ),
+              
               SizedBox(width: 16),
-              Consumer<CounterModel>(
-                builder: (context, counter, child) => FloatingActionButton(
-                  onPressed: counter.decrementCounter,
+              FloatingActionButton(
+                  onPressed: context.read<CounterModel>().decrementCounter,
                   tooltip: 'Decrement',
                   child: Icon(Icons.remove),
                 ),
-              ),
+              
             ],
           ),
         ),
@@ -79,11 +83,17 @@ class Count extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      /// Calls `context.watch` to make [Count] rebuild when [Counter] changes.
-      '${context.watch<CounterModel>().counter}',
-      key: const Key('counterState'),
-      style: Theme.of(context).textTheme.headlineMedium,
+    return BlocBuilder<CounterModel, int>(
+      builder: (context, count) {
+        return Text(
+          count.toString(),
+          
+        );
+      },
     );
   }
 }
+
+
+
+

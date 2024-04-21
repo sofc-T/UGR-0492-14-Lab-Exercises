@@ -42,12 +42,12 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Count(),
-              Text(""), // Placeholder text
+              Text(""),
             ],
           ),
         ),
         floatingActionButton: SizedBox(
-          width: double.infinity, // Adjust the width as needed
+          width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -80,7 +80,6 @@ class Count extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      /// Calls `context.watch` to make [Count] rebuild when [Counter] changes.
       '${context.watch<CounterModel>().counter}',
       key: const Key('counterState'),
       style: Theme.of(context).textTheme.headlineMedium,
