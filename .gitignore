@@ -136,3 +136,145 @@ app.*.symbols
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
 !.vscode/settings.json
+# Gradle files
+.gradle/
+build/
+**/build/
+!gradle-wrapper.jar
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log files
+*.log
+
+# Android Studio files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Keystore files
+*.jks
+
+# MacOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+
+# Java files
+*.class
+
+# Kotlin files
+*.kotlin_module
+*.kotlin_metadata
+
+# Ignore Gradle caches
+.gradle/
+**/build/
+!.gradle/wrapper/gradle-wrapper.properties
+
+# Ignore Android specific files
+.idea/workspace.xml
+.idea/libraries
+.idea/shelf
+.idea/modules.xml
+.idea/.name
+.idea/caches
+.idea/assetWizardSettings.xml
+.idea/gradle.xml
+.idea/dictionaries
+.idea/studio.vmoptions
+.idea/coverage
+.idea/codeStyles
+.idea/encodings.xml
+.idea/inspectionProfiles
+.idea/gradle_dependencies.xml
+.idea/httpRequests
+.idea/navEditor.xml
+.idea/remote-mappings.xml
+.idea/tasks.xml
+.idea/usageStatistics
+.idea/vcs.xml
+
+# APK files
+*.apk
+*.ap_
+*.aab
+
+# Proguard files
+proguard/
+proguard-project.txt
+proguard-rules.pro
+
+# Misc
+*.lock
+*.orig
+*.pyc
+*.swp
+*.tmp
+*.temp
+*.bak
+*.old
+*.swp
+*.swo
+
+# Flutter specific files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+.idea/libraries/Dart_SDK.xml
+.idea/libraries/KotlinJavaRuntime.xml
+.idea/modules.xml
+.idea/runConfigurations/main_dart.xml
+.idea/workspace.xml
+.idea/libraries/FlutterPlugins.xml
+.idea/libraries/Flutter_for_Android.xml
+
+# Other
+output.json
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+google-services.json
+*.iml
+*.hprof
+
+# IntelliJ
+out/
+*.ipr
+.idea/
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/libraries
+.idea/modules.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/httpRequests
+.idea/gradle.xml
+.idea/dictionary/
+.idea/.name
+.idea/encodings.xml
+
+# User-specific files
+.idea/assetWizardSettings.xml
+.idea/runConfigurations/
+.idea/gradle.run.xml
+.idea/compiler.xml
+
+# Code styles
+.code-style/
+.idea/codeStyles/
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
+
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*log
+
